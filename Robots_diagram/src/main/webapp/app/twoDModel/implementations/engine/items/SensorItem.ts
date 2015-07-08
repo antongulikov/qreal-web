@@ -106,6 +106,14 @@ class SensorItem implements AbstractItem {
         this.hideHandles();
     }
 
+    getCenterX() : number {
+        return this.centerX;
+    }
+
+    getCenterY() : number {
+        return this.centerY;
+    }
+
     getDefaultPosition(): TwoDPosition {
         var startX = this.robotItem.getStartPosition().x + this.robotItem.getWidth() + 15;
         var startY = this.robotItem.getStartPosition().y + this.robotItem.getHeight() / 2 - this.height / 2;
@@ -175,6 +183,7 @@ class SensorItem implements AbstractItem {
     showHandles(): void {
         this.rotateHandle.toFront();
         this.rotateHandle.show();
+        console.log("Sensor Position : " + this.centerX + " " + this.centerY);
     }
 
     remove(): void {
