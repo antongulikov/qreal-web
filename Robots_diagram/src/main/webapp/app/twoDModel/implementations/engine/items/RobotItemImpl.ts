@@ -157,10 +157,21 @@ class RobotItemImpl implements RobotItem {
         var x = this.center.x - this.width / 2;
         var y = this.center.y - this.height / 2;
         var angle = this.angle * 180 / Math.PI;
-        console.log("x: " + this.center.x + " y: " + this.center.y);
+    //    console.log("x: " + this.center.x + " y: " + this.center.y);
         this.image.transform("t" + x + "," + y + "r" + angle);
-        //this.transformSensorsItems("t" + x + "," + y + "r" + angle);
-        //this.updateSensorsTransformations();
+
+        for (var portName in this.sensors) {
+            var sensor = this.sensors[portName];
+            sensor.redraw();
+        }
+    }
+
+    recalculateParamsInSensors(speed1 : number, speed2 : number) : void {
+        for (var portName in this.sensors){
+            var sensor = this.sensors[portName];
+            sensor.recalculateParams(speed1 , speed2);
+            this.sensors[portName] = sensor;
+        }
     }
 
     updateRobotLocation(position: TwoDPosition, angle): void {
@@ -220,7 +231,6 @@ class RobotItemImpl implements RobotItem {
     private transformSensorsItems(transformationString: string): void {
         for(var portName in this.sensors) {
             var sensor = this.sensors[portName];
-            console.log("Transfrom Sensor Position" + sensor.getCenterX() + " " + sensor.getCenterY());
             sensor.transform(transformationString);
         }
     }

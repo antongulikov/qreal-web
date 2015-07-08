@@ -6,10 +6,6 @@ class InitialBlock extends Block {
 
         if (links.length == 1) {
             var nextNode = nodesMap[links[0].get('target').id];
-            var robotModels = timeline.getRobotModels();
-            var robotModel = robotModels[0];
-            robotModel.setMotor1(0);
-            robotModel.setMotor2(0);
             output += Factory.run(nextNode, graph, nodesMap, linksMap, env, timeline) + "\n";
         }
         else if (links.length > 1) {

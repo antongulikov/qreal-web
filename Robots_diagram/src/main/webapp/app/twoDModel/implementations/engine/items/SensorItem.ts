@@ -10,11 +10,13 @@ class SensorItem implements AbstractItem {
     protected startCx: number;
     protected startCy: number;
     protected sensorType: DeviceInfo;
+    protected angle : number;
 
     constructor(robotItem: RobotItem, worldModel: WorldModel, sensorType: DeviceInfo, pathToImage: string) {
         this.robotItem = robotItem;
         var paper: RaphaelPaper = worldModel.getPaper();
         this.sensorType = sensorType;
+        this.angle = 0;
         this.defineImageSizes(sensorType);
         var defaultPosition = this.getDefaultPosition();
         this.image = paper.image((pathToImage) ? pathToImage : this.pathToImage(),
@@ -189,5 +191,45 @@ class SensorItem implements AbstractItem {
     remove(): void {
         this.image.remove();
         this.rotateHandle.remove();
+    }
+
+    recalculateParams(speed1 : number, speed2 : number) : void {
+        console.log("Here");
+        var averageSpeed = (speed1 + speed2) / 2;
+        var timeInterval = 1;
+        if (speed1 != speed2) {
+            var radius = speed1 * this.height / (speed1 - speed2);
+            var averageRadius = radius - this.height / 2;
+            var angularSpeed = 0;
+            var actualRadius = 0;
+            if (speed1 == -speed2) {
+                angularSpeed = speed1 / radius;
+                actualRadius = 0
+            }
+            else {
+                angularSpeed = averageSpeed / averageRadius;
+                actualRadius = averageRadius;
+            }
+            var gammaRadians = timeInterval * angularSpeed;
+            var gammeDegrees = gammaRadians * 180 / Math.PI;
+            this.angle += gammaRadians;
+        }
+        this.centerX += averageSpeed * Math.cos(this.angle);
+        this.centerY += averageSpeed * Math.sin(this.angle);
+        console.log("New X and Y : " + this.centerX + " " + this.centerY);
+    }
+
+    redraw() : void {
+        console.log("inside");
+        console.log("Positoin ::::" + this.centerX + " " + this.centerY);
+        var newCx = (this.width / 2 + 20) * Math.cos(this.angle) + this.centerX;
+        var newCy = (this.width / 2 + 20) * Math.sin(this.angle) + this.centerY;
+        this.rotateHandle.attr({cx: newCx, cy: newCy});
+
+        var x = this.centerX - this.width / 2;
+        var y = this.centerY - this.height / 2;
+        var angle = this.angle * 180 / Math.PI;
+        console.log("x: " + x + " y: " + y);
+        this.image.transform("t" + x + "," + y + "r" + angle);
     }
 }

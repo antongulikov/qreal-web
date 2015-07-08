@@ -99,11 +99,15 @@ class RobotModelImpl implements RobotModel {
             this.position.x += averageSpeed * Math.cos(this.angle);
             this.position.y += averageSpeed * Math.sin(this.angle);
         }
+
         this.robotItem.updateRobotLocation(this.position, this.angle);
+        this.robotItem.recalculateParamsInSensors(this.speed1, this.speed2);
+
     }
 
     nextFragment(): void {
         this.robotItem.redraw();
-        console.log("modX: " + this.position.x + " modY: " + this.position.y);
+        console.log("Speed" + this.speed1 + " " + this.speed2);
+        //console.log("modX: " + this.position.x + " modY: " + this.position.y);
     }
 }

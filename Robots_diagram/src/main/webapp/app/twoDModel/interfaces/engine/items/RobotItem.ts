@@ -7,4 +7,5 @@ interface RobotItem extends AbstractItem {
     removeSensorItem(portName: string): void;
     addSensorItem(portName: string, deviceType: DeviceInfo, pathToImage: string): void;
     setStartPosition(position: TwoDPosition, direction: number): void;
+    recalculateParamsInSensors(speed1 : number, speed2 : number) : void;
 }
