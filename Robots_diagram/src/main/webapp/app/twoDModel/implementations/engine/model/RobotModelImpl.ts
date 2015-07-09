@@ -9,6 +9,14 @@ class RobotModelImpl implements RobotModel {
     private maxSpeed1 = 3;
     private maxSpeed2 = 3;
 
+    private position: TwoDPosition;
+    private angle: number;
+    private speed1: number;
+    private speed2: number;
+    private maxSpeed1 = 3;
+    private maxSpeed2 = 3;
+
+
     constructor(worldModel: WorldModel, twoDRobotModel: TwoDRobotModel, position: TwoDPosition) {
         this.twoDRobotModel = twoDRobotModel;
         this.robotItem = new RobotItemImpl(worldModel, position, twoDRobotModel.getRobotImage(), this);
@@ -59,10 +67,12 @@ class RobotModelImpl implements RobotModel {
     }
 
     recalculateParams(): void {
+
         var position = this.robotItem.getCurrentPosition();
         var angle = this.robotItem.getAngleInRadian();
         this.position = position;
         this.angle = angle;
+
         var robotHeight = 50; // TODO: getHeight!
         var timeInterval = 1; // TODO: timeInterval!
         var averageSpeed = (this.speed1 + this.speed2) / 2;
@@ -100,12 +110,15 @@ class RobotModelImpl implements RobotModel {
             this.position.x += averageSpeed * Math.cos(this.angle);
             this.position.y += averageSpeed * Math.sin(this.angle);
         }
+
         this.robotItem.updateRobotLocation(this.position, this.angle);
         console.log("Robot now at: " + this.position.x + ", " + this.position.y + '\n');
+
     }
 
     nextFragment(): void {
         this.robotItem.redraw();
+
     }
 
     //nextFragment(): void {

@@ -20,6 +20,7 @@ class TimelineImpl implements Timeline {
     private robotModels: RobotModel[] = [];
 
     constructor() {
+
         this.setActive(false);
     }
 
@@ -31,13 +32,16 @@ class TimelineImpl implements Timeline {
         if (this.isActive)
             return;
         this.setActive(true);
+
         var timeline = this;
         this.cyclesCount = 0;
         this.intervalId = setInterval(function() { timeline.onTimer(timeline); }, this.defaultFrameLength);
     }
 
     stop(): void {
+
         this.setActive(false);
+
         clearInterval(this.intervalId);
     }
 
@@ -48,7 +52,9 @@ class TimelineImpl implements Timeline {
             model.recalculateParams();
         });
         this.cyclesCount++;
+
         if (this.cyclesCount >= this.speedFactor) {
+
             timeline.getRobotModels().forEach(function(model) {
                 model.nextFragment();
             });
