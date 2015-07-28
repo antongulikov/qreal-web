@@ -24,6 +24,7 @@
 #twoDModel_right-menu {
     left: auto;
     width: 210px; /*Width of right frame div*/
+    height: auto;
     top: 70px;
     right: 10px;
     bottom: 10px;
@@ -34,11 +35,12 @@
 
 #controlPanel {
     width: 100%;
-    height: 30%;
-    margin: 130% auto;
+    height: 318px;
+    margin: 150% auto;
     align-content: center;
     position: relative;
-    background: orange;
+    background-image: url(../../images/2dmodel/trikKit/controller.png);
+    background-size: contain;
 }
 
 #shownMonitor {
