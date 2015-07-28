@@ -175,6 +175,10 @@
 			<Image src="images/smileBlock.svg"/>
 		</Element>
 
+        <Element name = "Sad Smile">
+            <Image src = "images/sadSmileBlock.svg"/>
+        </Element>
+
 		<Element name="Marker Down">
 			<Image src="images/markerDownBlock.svg"/>
 		</Element>
@@ -182,6 +186,10 @@
 		<Element name="Marker Up">
 			<Image src="images/markerUpBlock.svg"/>
 		</Element>
+
+        <Element name="Clear Screen">
+            <Image src="images/clearScreenBlock.svg"/>
+        </Element>
 
 		<Element name="Background Color">
 			<Property name="Color" type="dropdown">

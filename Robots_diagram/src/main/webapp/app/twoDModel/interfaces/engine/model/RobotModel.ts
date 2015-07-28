@@ -9,4 +9,8 @@ interface RobotModel {
     getAngle(): number;
     setPosition(position: TwoDPosition): void;
     setDrawingState(newState : boolean): void;
+    drawSmile() : void;
+    drawSadSmile() : void;
+    drawPixel(x : number, y : number) : void;
+    clearScreen() : void;
 }

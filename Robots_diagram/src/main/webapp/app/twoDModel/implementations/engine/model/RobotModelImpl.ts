@@ -116,4 +116,21 @@ class RobotModelImpl implements RobotModel {
     nextFragment(): void {
         this.robotItem.redraw();
     }
+
+    drawSmile() : void {
+        this.robotItem.drawSmile();
+    }
+
+    drawPixel(x : number, y : number) : void {
+        this.robotItem.drawPixel(x, y);
+    }
+
+    clearScreen() : void {
+        this.robotItem.clearScreen();
+    }
+
+    drawSadSmile() : void {
+        this.robotItem.drawSadSmile();
+    }
+
 }

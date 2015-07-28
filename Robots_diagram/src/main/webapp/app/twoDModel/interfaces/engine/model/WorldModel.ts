@@ -6,6 +6,7 @@ interface WorldModel {
     getDrawMode(): number;
     setNoneMode(): void;
     getPaper(): RaphaelPaper;
+    getLeftPaper() : RaphaelPaper;
     setCurrentElement(element): void;
     clearPaper(): void;
 }

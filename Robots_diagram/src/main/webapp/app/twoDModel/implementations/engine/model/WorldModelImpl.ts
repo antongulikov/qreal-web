@@ -1,6 +1,7 @@
 class WorldModelImpl implements WorldModel {
     private drawMode: number = 0;
     private paper: RaphaelPaper;
+    private leftPaper : RaphaelPaper;
     private currentElement = null;
     private colorFields: ColorFieldItem[] = [];
     private wallItems: WallItem[] = [];
@@ -14,13 +15,35 @@ class WorldModelImpl implements WorldModel {
                                     </pattern>';
         $("body").append('<svg id="dummy" style="display:none"><defs>' + wall_pattern + '</defs></svg>');
         $("#twoDModel_paper defs").append($("#dummy pattern"));
+
+        this.leftPaper = Raphael("shownMonitor", "100%", "100%");
+        $(this.leftPaper.canvas).attr("id", "twoDModel_paperSmile");
+
+        wall_pattern = '<pattern id="wall_patternSmile" patternUnits="userSpaceOnUse" width="85" height="80">\
+                                       <image xlink:href="images/2dmodel/2d_wall.png" width="85" height="80" />\
+                                    </pattern>';
+        $("body").append('<svg id="dummy" style="display:none"><defs>' + wall_pattern + '</defs></svg>');
+        $("#twoDModel_paperSmile defs").append($("#dummy pattern"));
         $("#dummy").remove();
+
+        var tmpModel  = this;
 
         var worldModel = this;
         $(document).ready(function(){
             var shape;
             var isDrawing: boolean = false;
             var startDrawPoint;
+
+            $("#shownMonitor").mousedown(function(e) {
+
+                    var offset = $("#shownMonitor").offset();
+
+                    var position = new TwoDPosition(e.pageX, e.pageY);
+                    var rect =  tmpModel.leftPaper.rect(position.x - offset.left, position.y - offset.top, 1, 1).attr({fill : "#bbbbbb"});
+
+
+                }
+            );
 
             $("#twoDModel_stage").mousedown(function(e) {
                 switch (worldModel.drawMode) {
@@ -126,6 +149,10 @@ class WorldModelImpl implements WorldModel {
         return position;
     }
 
+    getLeftPaper() : RaphaelPaper {
+        return this.leftPaper;
+    }
+
     setDrawLineMode(): void {
         this.drawMode = 1;
     }
@@ -163,12 +190,12 @@ class WorldModelImpl implements WorldModel {
     }
 
     clearPaper(): void {
-        while (this.wallItems.length) {
+        while (this.wallItems.length > 0) {
             var wallItem = this.wallItems.pop();
             wallItem.remove();
         }
 
-        while (this.colorFields.length) {
+        while (this.colorFields.length > 0) {
             var item = this.colorFields.pop();
             item.remove();
         }

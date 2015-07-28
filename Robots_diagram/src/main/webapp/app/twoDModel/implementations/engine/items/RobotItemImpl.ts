@@ -16,6 +16,7 @@ class RobotItemImpl implements RobotItem {
     private previousAngle : number;
     private sensors: {string?: SensorItem} = {};
     private draftsman : DrawingItemImpl;
+    private smile : RaphaelElement;
 
     constructor(worldModel: WorldModel, position: TwoDPosition, imageFileName: string, robot: RobotModel) {
         this.worldModel = worldModel;
@@ -320,5 +321,25 @@ class RobotItemImpl implements RobotItem {
             var sensor = this.sensors[portName];
             sensor.transform(transformationString);
         }
+    }
+
+    drawSmile() : void {
+        var paper = this.worldModel.getLeftPaper();
+        this.smile = paper.image("images/trik_smile_normal.png",0,0, paper.width, paper.height  );
+    }
+
+    drawSadSmile() : void {
+        var paper = this.worldModel.getLeftPaper();
+        this.smile = paper.image("images/trik_smile_sad.png",0,0, paper.width, paper.height  );
+    }
+
+    drawPixel(x : number, y : number) : void {
+        var paper = this.worldModel.getLeftPaper();
+        var rect = paper.rect(x, y, 4, 4).attr({fill : "#ffffff"});
+    }
+
+    clearScreen() : void {
+        var paper = this.worldModel.getLeftPaper();
+        paper.clear();
     }
 }

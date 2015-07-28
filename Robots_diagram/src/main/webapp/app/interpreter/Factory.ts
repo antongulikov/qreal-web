@@ -45,6 +45,23 @@ class Factory {
             case "Marker Down":
                 output += MarkerBlock.run(node, graph, nodesMap, linksMap, env, timeline, true);
                 break;
+
+            case "Smile":
+                output += SmileBlock.run(node, graph, nodesMap, linksMap, env, timeline);
+                break;
+
+            case "Draw Pixel":
+                output += PixelBlock.run(node, graph, nodesMap, linksMap, env, timeline);
+                break;
+
+            case "Clear Screen":
+                output += ClearBlock.run(node, graph, nodesMap, linksMap, env, timeline);
+                break;
+
+            case "Sad Smile":
+                output += SadSmileBlock.run(node, graph, nodesMap, linksMap, env, timeline);
+                break;
+
             
             default:
                 output += "Not yet";

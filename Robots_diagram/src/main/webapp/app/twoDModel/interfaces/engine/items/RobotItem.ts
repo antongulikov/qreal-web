@@ -12,4 +12,8 @@ interface RobotItem extends AbstractItem {
     getCenterPosition() : TwoDPosition;
     getWorldModel() : WorldModel;
     setDrawingState(newState : boolean) : void;
+    drawSmile() : void;
+    drawPixel(x : number, y : number) : void;
+    clearScreen() : void;
+    drawSadSmile() : void;
 }

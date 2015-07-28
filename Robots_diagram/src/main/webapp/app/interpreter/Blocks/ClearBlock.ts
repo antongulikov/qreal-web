@@ -1,10 +1,10 @@
-class SmileBlock extends Block {
+class ClearBlock extends Block {
     static run(node, graph, nodesMap, linksMap, env, timeline): string {
 
         var output : string = "Smile\n"
         var models = timeline.getRobotModels();
         var model = models[0];
-        model.drawSmile();
+        model.clearScreen();
 
         var nodeId = InterpretManager.getIdByNode(node, nodesMap);
         var links = InterpretManager.getOutboundLinks(graph, nodeId);

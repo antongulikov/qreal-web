@@ -221,6 +221,21 @@
         </div>
 
         <div id="twoDModel_right-menu">
+            <div id ="controlPanel">
+                <div id = "monitorTable">
+                    <table class ="twoDModel_table" unselectable = "on">
+                        <tbody unselectable = "on">
+                            <tr unselectable = "on">
+                                <td style="text-align: center"> AAA </td>
+                                <td>
+                                    <div id = "shownMonitor"></div>
+                                </td>
+                                <td style="text-align: center">BBB</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 </div>
