@@ -24,7 +24,8 @@ class RobotItemImpl implements RobotItem {
         this.startPosition = position;
         this.currentStartPosition = this.startPosition;
         this.angle = 0;
-        var paper = worldModel.getPaper();
+        var paper = worldModel.getLeftPaper();
+        paper = worldModel.getPaper();
         this.image = paper.image(imageFileName, position.x, position.y, this.width, this.height);
         this.center = new TwoDPosition(position.x + this.width / 2, position.y + this.width / 2);
         this.startCenter = new TwoDPosition(this.center.x, this.center.y);
@@ -341,5 +342,11 @@ class RobotItemImpl implements RobotItem {
     clearScreen() : void {
         var paper = this.worldModel.getLeftPaper();
         paper.clear();
+    }
+
+    drawLine(x1 : number, y1 : number, x2 : number, y2 : number) {
+        var paper = this.worldModel.getLeftPaper();
+        var tmp = paper.path("M" + x1 + "," + y1 + "L" + x2 + "," + y2);
+        tmp.attr({fill: "#c5d0de", stroke: "#b1bbc7", opacity: 0.5});
     }
 }

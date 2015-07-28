@@ -62,6 +62,10 @@ class Factory {
                 output += SadSmileBlock.run(node, graph, nodesMap, linksMap, env, timeline);
                 break;
 
+            case "Draw Line":
+                output += LineDrawBlock.run(node, graph, nodesMap, linksMap, env, timeline);
+                break;
+
             
             default:
                 output += "Not yet";

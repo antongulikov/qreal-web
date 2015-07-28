@@ -13,4 +13,5 @@ interface RobotModel {
     drawSadSmile() : void;
     drawPixel(x : number, y : number) : void;
     clearScreen() : void;
+    drawLine(x1 : number, y1 : number, x2 : number, y2 : number) : void;
 }

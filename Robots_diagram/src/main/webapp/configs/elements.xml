@@ -161,15 +161,6 @@
 	</Category>
 	<Category name="Drawing">
 
-		<Element name="Draw Pixel">
-			<Property name="X" type="spinner">
-				<value>0</value>
-			</Property>
-			<Property name="Y" type="spinner">
-				<value>0</value>
-			</Property>
-			<Image src="images/drawPixelBlock.svg"/>
-		</Element>
 
 		<Element name="Smile">
 			<Image src="images/smileBlock.svg"/>
@@ -177,6 +168,34 @@
 
         <Element name = "Sad Smile">
             <Image src = "images/sadSmileBlock.svg"/>
+        </Element>
+
+
+
+        <Element name="Draw Line">
+            <Property name="x1" type="spinner">
+                <value>0</value>
+            </Property>
+            <Property name="y1" type="spinner">
+                <value>0</value>
+            </Property>
+            <Property name="x2" type="spinner">
+                <value>0</value>
+            </Property>
+            <Property name="y2" type="spinner">
+                <value>0</value>
+            </Property>
+            <Image src="images/drawLineBlock.svg"/>
+        </Element>
+
+        <Element name="Draw Pixel">
+            <Property name="X" type="spinner">
+                <value>0</value>
+            </Property>
+            <Property name="Y" type="spinner">
+                <value>0</value>
+            </Property>
+            <Image src="images/drawPixelBlock.svg"/>
         </Element>
 
 		<Element name="Marker Down">
